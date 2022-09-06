@@ -21,19 +21,30 @@ public:
 class Solution {
 public:
     vector<vector<int>> levelOrder(Node* root) {
-         if (root == nullptr) return {};
-        queue<Node*> q;
+        if(root==NULL)
+        {
+            return {};
+        }
+        queue<Node*>q;
         q.push(root);
-        vector<vector<int>> ans;
-        while (!q.empty()) {
-            ans.emplace_back();
-            for (int i = q.size(); i >= 1; i--) {
-                Node* curr = q.front(); q.pop();
-                ans.back().push_back(curr->val);
-                for (Node* child : curr->children) {
+        vector<vector<int>>ans;
+        
+        while(!q.empty())
+        {
+            int n=q.size();
+            vector<int>v;
+            
+            for(int i=0; i<n; i++)// traversing the entire particular level
+            {
+                Node* temp= q.front(); // first element nikala
+                q.pop();
+                for(auto child: temp->children) // temp k sare children ko queue m daalna 
+                {
                     q.push(child);
                 }
+                v.push_back(temp->val); // temp k value ko 1D vector m daal diya aur esa purre level k element k liye liya gya(n);
             }
+            ans.push_back(v);  
         }
         return ans;
     }
