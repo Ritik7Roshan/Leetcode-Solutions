@@ -66,6 +66,8 @@ public:
     }
 };
 
+//TC O(1)
+
 /**
  * Your MyCircularQueue object will be instantiated and called as such:
  * MyCircularQueue* obj = new MyCircularQueue(k);
