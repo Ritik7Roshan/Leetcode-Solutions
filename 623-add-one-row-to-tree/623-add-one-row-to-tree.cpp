@@ -11,35 +11,34 @@
  */
 class Solution {
 public:
-    void helper(TreeNode* &root, int val, int depth,int count)
-    {
-        if(root==NULL){
-            return;
+    TreeNode* addOneRow(TreeNode* root, int val, int depth) {
+        if(depth == 1){
+            TreeNode* newhead = new TreeNode(val);
+            newhead->left = root;
+            return newhead;
         }
-        if(count==(depth-1))
-        {
-            TreeNode* temp=new TreeNode(val);
-            temp->right=root->right;
-            root->right=temp;
-            
-            temp=new TreeNode(val);
-            temp->left=root->left;
-            root->left=temp;
-            return;
+        stack<pair<TreeNode*, int>> s;
+        s.push({root, 1});
+        while(!s.empty()){
+            TreeNode* cur = s.top().first;
+            int curdep = s.top().second;
+            s.pop();
+            if(cur == nullptr) continue;
+            if(curdep == depth- 1){
+                TreeNode* templeft = cur->left;
+                TreeNode* tempright = cur->right;
+                TreeNode* newleft = new TreeNode(val);
+                TreeNode* newright = new TreeNode(val);
+                cur->left = newleft;
+                cur->right = newright;
+                newleft->left = templeft;
+                newright->right = tempright;
+            }
+            else{
+                s.push({cur->left, curdep+1});
+                s.push({cur->right, curdep+1});
+            }
         }
-        helper(root->left, val, depth,count+1);
-        helper(root->right, val,depth,count+1);
-    }
-    
-TreeNode* addOneRow(TreeNode* root, int val, int depth) {
-       if(depth==1){
-           TreeNode* temp= new TreeNode(val);
-           temp->left=root;
-           return temp;
-       }
-        helper(root,val,depth,1);
         return root;
     }
 };
-// TC O(N):- A total of n nodes of the given tree willl be //considered
-// SC O(N):- The depth of recursion tree can go upto n in worst //case (skew tree)
