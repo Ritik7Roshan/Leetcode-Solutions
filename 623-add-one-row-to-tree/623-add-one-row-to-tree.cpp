@@ -41,3 +41,5 @@ TreeNode* addOneRow(TreeNode* root, int val, int depth) {
         return root;
     }
 };
+// TC O(N):- A total of n nodes of the given tree willl be //considered
+// SC O(N):- The depth of recursion tree can go upto n in worst //case (skew tree)
