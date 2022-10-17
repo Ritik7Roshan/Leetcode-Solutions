@@ -4,7 +4,7 @@ public:
         for(int i=0; i<26; ++i)
         {
             char currChar= 'a'+i;
-            if(sentence.find(currChar)==string::npos)
+            if(sentence.find(currChar,0)==string::npos)
                 return false;
         }
         return true;
