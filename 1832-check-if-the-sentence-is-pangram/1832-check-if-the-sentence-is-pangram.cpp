@@ -1,9 +1,19 @@
 class Solution {
 public:
     bool checkIfPangram(string sentence) {
-        unordered_set<char> seen(sentence.begin(),sentence.end());
-        return seen.size()== 26;
+        array<bool,26> seen{};
+        
+        for(auto currChar : sentence)
+        {
+            seen[currChar-'a']=true;
+        }
+        for(auto status: seen)
+        {
+            if(!status)
+                return false;
+        }
+        return true;
     }
 };
-//TC O(n):-only to iterate over the sentence unordered_set All                Operations are taking O(1) time.
-//SC O(1) 
+//TC O(n)
+// SC O(1)
