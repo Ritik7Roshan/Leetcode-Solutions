@@ -7,9 +7,9 @@ public:
         for(auto x:word2)
             b += x;
        
-        if(a.compare(b)==0)
-            return 1;
+        // if(a.compare(b)==0)
+        //     return 1;
         
-        return 0;
+        return (a==b);
     }
 };
