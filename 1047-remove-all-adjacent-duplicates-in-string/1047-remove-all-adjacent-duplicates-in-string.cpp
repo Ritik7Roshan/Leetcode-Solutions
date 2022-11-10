@@ -1,10 +1,21 @@
 class Solution {
 public:
     string removeDuplicates(string s) {
-          int i = 0;
-        for(int j = 1; j < s.size(); ++j)
-            if (i < 0 || s[i] != s[j]) s[++i] = s[j];
-            else --i;
-        return s.substr(0, i + 1);
+        stack<char> st;
+	string ans="";
+	for(auto curr:s) {
+		if(st.empty()) st.push(curr);
+		else if(st.top() == curr) st.pop();
+		else st.push(curr);
+	}
+
+	while(!st.empty()) {
+		ans += st.top();
+		st.pop();
+	}
+
+	reverse(ans.begin(), ans.end());
+
+	return ans;
     }
 };
