@@ -21,3 +21,5 @@ public:
         return ans;
     }
 };
+//  TC O(4^n/sqrt(n))
+// SC  O(4^n/sqrt(n))+ O(n)
