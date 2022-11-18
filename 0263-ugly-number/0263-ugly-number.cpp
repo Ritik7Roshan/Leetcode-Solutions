@@ -1,25 +1,14 @@
 class Solution {
 public:
     bool isUgly(int n) {
-        // A non-positive integer cannot be ugly
-        if (n <= 0) {
-            return false;
+        if (n <= 0) return false;
+        while (!(n % 3)) {
+            n /= 3;
         }
-
-        // Factorize by dividing with permitted factors.
-        for (auto factor : {2, 3, 5}) {
-            n = keepDividingWhenDivisible(n, factor);
+        while (!(n % 5)) {
+            n /= 5;
         }
-
-        // Check if the integer is reduced to 1 or not.
-        return n == 1;
-    }
-
-    // Keep dividing dividend by divisor when division is possible.
-    int keepDividingWhenDivisible(int dividend, int divisor) {
-        while (dividend % divisor == 0) {
-            dividend /= divisor;;
-        }
-        return dividend;
+       
+        return (n & (n - 1)) == 0;
     }
 };
