@@ -1,40 +1,38 @@
-class Solution {
+class Solution 
+{
 public:
-    int numTilePossibilities(string tiles) {
-     set<string> answer; 
+    int numTilePossibilities(string tiles) 
+    {
         
-        unordered_map<int, bool> visited; 
+        set<string> answer;
         
-        for(int i = 0; i < tiles.length(); i++) { 
-            visited[i] = false;
+        unordered_map<int,bool> visited;
+        
+        for(int i=0; i<tiles.length(); i++){
+            visited[i]=false;
         }
         
-        string path = ""; 
+        string path= "";
         
-        backtrack(tiles, answer, path, visited); 
+        backtrack(tiles,answer, path,visited);
         
-        return answer.size()-1;
+        return answer.size()-1;      
     } 
-    
-    void backtrack(string tiles, set<string> &answer, string path, unordered_map<int, bool> &visited) { 
-        
-        answer.insert(path);
-        
-        for(int i = 0; i < tiles.length(); i++) { 
-            
-            if (visited[i] == true) { 
+     void  backtrack (string &tiles, set<string>&answer, string &path , unordered_map<int,bool>&visited)
+{
+         answer.insert(path);
+        for(int i=0; i<tiles.length();i++)
+        {
+            if(visited[i]==true)
+            {
                 continue;
-            } 
-            
-            path.push_back(tiles[i]); 
-            
-            visited[i] = true; 
-            
-            backtrack(tiles, answer, path, visited); 
-            
-            visited[i] = false; 
-            
+            }
+            path.push_back(tiles[i]);
+            visited[i]=true;
+            backtrack(tiles,answer,path,visited);
+            visited[i]=false;
             path.pop_back();
+            
         }
-    }
+}
 };
