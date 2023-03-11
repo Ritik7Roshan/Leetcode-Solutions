@@ -12,7 +12,7 @@ public:
         int l=0, h=m*n-1;
         while(l!=h)
         {
-           int mid=(l+h)/2;// doubt why (l+h-1)/2 why not (l+h)/2
+           int mid=(l+(h-l)/2);// doubt why (l+h-1)/2 why not (l+h)/2
             if(matrix[mid/m][mid%m]>=target)
                 h=mid;
             else
