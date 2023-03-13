@@ -39,9 +39,10 @@ public:
             r=q;
             q=p;
             p=p->next;
-            q->next=r;
+            q->next=r;//Reversing Link
         }
-        head=q;
+        head=q;// Marking head to correct position
+        
         
         return head;
     }
