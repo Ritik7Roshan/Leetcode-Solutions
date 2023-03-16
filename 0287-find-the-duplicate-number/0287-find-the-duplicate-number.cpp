@@ -1,16 +1,16 @@
-//Using Set (donot fullfill ques condition)
 class Solution {
 public:
+    int store(vector<int>&nums,int ind)
+    {
+        if(ind==nums[ind])
+            return ind;
+        int nxt=nums[ind];
+        nums[ind]=ind;
+        return store(nums,nxt);
+    }
     int findDuplicate(vector<int>& nums) {
-       unordered_set<int> seen;
-        for(auto &num: nums)
-        {
-            if(seen.count(num))
-                return num;
-            seen.insert(num);
-        }
-        return -1;
+       return store(nums,0);
     }
 };
-//TC O(N)
-//SC O(N)
+//TC O(n)
+//SC O(n) n is size of nums
