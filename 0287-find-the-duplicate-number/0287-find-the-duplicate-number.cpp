@@ -1,16 +1,8 @@
 class Solution {
 public:
-    int store(vector<int>&nums,int ind)
-    {
-        if(ind==nums[ind])
-            return ind;
-        int nxt=nums[ind];
-        nums[ind]=ind;
-        return store(nums,nxt);
-    }
     int findDuplicate(vector<int>& nums) {
-       return store(nums,0);
+       while (nums[0] != nums[nums[0]])
+            swap(nums[0], nums[nums[0]]);
+        return nums[0];  
     }
 };
-//TC O(n)
-//SC O(n) n is size of nums
