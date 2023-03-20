@@ -7,26 +7,22 @@
  * };
  */
 
-// Using hashing 
-// here we will check if the  node we have visited is present or if we have //visited it then it mean there is cycle.
+////One easy methos is to modify the values of the linked list to tha value which is not in the range.
+//When you encounter this value again then there is loop
 
 class Solution {
 public:
-    unordered_map<ListNode*,int>mp;
     bool hasCycle(ListNode *head) {
+        
+        if(head==NULL) return false;
+        
         while(head!=NULL)
         {
-            if(mp.find(head)==mp.end())
-            {
-                mp[head]++;
-            }
-            else{
+            if(head->val==1000000)
                 return true;
-            }
+             head->val=1000000;
             head=head->next;
         }
         return false;
     }
 };
-//TC O(N)
-//SC O(N)
