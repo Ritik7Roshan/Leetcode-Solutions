@@ -7,19 +7,26 @@
  * };
  */
 
+// Using hashing 
+// here we will check if the  node we have visited is present or if we have //visited it then it mean there is cycle.
 
-//Floyd's Cycle Detection Algorithm
 class Solution {
 public:
+    unordered_map<ListNode*,int>mp;
     bool hasCycle(ListNode *head) {
-       ListNode* fast=head;
-        ListNode* slow=head;
-        while(fast&& fast->next)
+        while(head!=NULL)
         {
-            fast=fast->next->next;
-            slow=slow->next;
-            if(fast==slow) return true;
+            if(mp.find(head)==mp.end())
+            {
+                mp[head]++;
+            }
+            else{
+                return true;
+            }
+            head=head->next;
         }
-        return false; 
+        return false;
     }
 };
+//TC O(N)
+//SC O(N)
