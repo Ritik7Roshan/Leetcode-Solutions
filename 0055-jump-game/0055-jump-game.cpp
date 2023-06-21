@@ -24,3 +24,5 @@ public:
         return dp[idx]=false;//memoizing
     }
 };
+//tc : O(N* N) -> for each index, I can have at max N jumps, hence O(N* N).
+// sc : O(N) + O(N) -> stack space plus dp array size.
