@@ -1,3 +1,4 @@
+//using three traversal
 class Solution {
 public:
     int partitionDisjoint(vector<int>& nums) {
@@ -12,7 +13,8 @@ public:
         
         for(int i=nums.size()-2; i>=0; i--)// strt frm nums.size()-2
         {
-            minRight[i]=min(nums[i],minRight[i+1]);// last second compare with last wala therefore i+1
+            minRight[i]=min(nums[i],minRight[i+1]);
+            // last second compare with last wala therefore i+1
         }
         
         for(int i=0; i<nums.size()-1; i++)
@@ -23,3 +25,5 @@ public:
          return -1;
     }
 };
+//TC O(N)
+//SC O(N)
