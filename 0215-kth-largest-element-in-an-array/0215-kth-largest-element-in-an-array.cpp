@@ -27,4 +27,8 @@ public:
         return -1;
         
     }
+    
 };
+//TC O(N+M);
+//SC O(M) M=maxValue-minValue 
+// N is nums size
