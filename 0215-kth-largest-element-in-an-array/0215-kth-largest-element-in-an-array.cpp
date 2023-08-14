@@ -1,15 +1,30 @@
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
-        priority_queue<int>heap;
-        for(int num:nums){
-            heap.push(-num);
-// C++ std::priority_queue implements a max-heap. To achieve min-heap functionality, we will multiply the values by -1 before pushing them onto the heap.
-            if(heap.size()>k){
-                heap.pop();
+        int minValue=INT_MAX;
+        int maxValue=INT_MIN;
+        
+        for(int num: nums)
+        {
+            minValue = min(minValue, num);
+            maxValue =max(maxValue, num);
+        }
+         vector<int> count(maxValue-minValue+1);// to counter negative numbers also;
+        for(int num : nums){
+            count[num-minValue]++;// applying the offset of minValue
+            
+        }
+        int remain =k;
+        for(int num=count.size()-1; num>=0; num--)
+        {
+            remain-=count[num];
+            if(remain<=0)
+            {
+                return num+minValue;
             }
         }
         
-        return -heap.top();
+        return -1;
+        
     }
 };
