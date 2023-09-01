@@ -2,7 +2,13 @@ class Solution {
 public:
     int numSetBits(int n)
     {
-         return __builtin_popcount(n);
+        int count=0;
+        while(n)
+        {
+            n=n&(n-1);
+            count++;
+        }
+        return count;
     }
     vector<int> countBits(int n) {
         vector<int> ans;
